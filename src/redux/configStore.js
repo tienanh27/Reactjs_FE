@@ -1,12 +1,22 @@
-import {combineReducers, createStore} from 'redux'; 
+import { applyMiddleware, combineReducers, createStore } from "redux";
 
+import createMiddleWareSaga from "redux-saga";
+import { DrawerCyberbugsReducer } from "./reducers/DrawerCyberbugsReducer";
+import { HistoryReducer } from "./reducers/HistoryReducer";
+import { LoadingReducer } from "./reducers/LoadingReducer";
+import { ProjectReducer } from "./reducers/ProjectReducer";
+import { UserCyberbugsReducer } from "./reducers/UserCyberbusReducer";
+import { rootSaga } from "./sagas/rootSaga";
+
+const middleWareSaga = createMiddleWareSaga();
 
 const rootReducer = combineReducers({
-    //reducer khai báo tại đây 
+	HistoryReducer,
+	UserCyberbugsReducer,
+	ProjectReducer,
+	DrawerCyberbugsReducer,
+	LoadingReducer,
+});
 
-})
-
-const store = createStore(rootReducer);
-
-export default store;
-
+export const store = createStore(rootReducer, applyMiddleware(middleWareSaga));
+middleWareSaga.run(rootSaga);
