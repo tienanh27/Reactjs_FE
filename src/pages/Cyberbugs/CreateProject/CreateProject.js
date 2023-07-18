@@ -66,10 +66,10 @@ export default function CreateProject(props) {
 	};
 
 	return (
-		<div className='mt-4 w-full'>
-			<h3 className='ml-3 text-2xl font-bold tracking-wider'>
+		<div className='container mt-4 w-full'>
+			<h3 className=' ml-3 text-2xl font-bold tracking-wider'>
 				Create Project
-			</h3>
+			</h3> 
 			<Breadcrumb className="ml-3 mt-2">
 				<Breadcrumb.Item>Home</Breadcrumb.Item>
 				<Breadcrumb.Item>CyberLearn.vn</Breadcrumb.Item>
