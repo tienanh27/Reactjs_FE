@@ -23,7 +23,7 @@ export default function CyberBugsTemplate(props) {
     };
   }, []);
 
-  if (size.width >= 1300) {
+  if (size.width >= 1000) {
     return (
       <div className="jira">
         <Layout>

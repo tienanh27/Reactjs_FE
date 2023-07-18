@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { SET_SUBMIT_EDIT_PROJECT } from "../../../redux/types/DrawerCyberbugsType";
 import { useFormik } from "formik";
 import {
 	GET_PROJECT_CATEGORY_SAGA,
 	UPDATE_PROJECT_SAGA,
 } from "../../../redux/types/ProjectCyberbugsType";
+
 import { Select } from "antd";
 
 export default function FormEditProject(props) {
@@ -42,6 +44,7 @@ export default function FormEditProject(props) {
 			submitFunction: handleSubmit,
 		});
 	}, []);
+	
 	const handleEditorChange = (e) => {
 		setFieldValue("description", e.target.getContent());
 	};
@@ -51,11 +54,11 @@ export default function FormEditProject(props) {
 	};
 
 	return (
-		<form action='' className='container' onSubmit={handleSubmit}>
+		<form action='' className='container font-bold' onSubmit={handleSubmit}>
 			<div className='flex gap-4'>
 				<div className='basis-1/2'>
 					<div className='form-group'>
-						<p className='mt-2'>Project Id</p>
+						<p className='mt-2 mb-2'>Project ID</p>
 						<input
 							disabled
 							name='id'
@@ -66,7 +69,7 @@ export default function FormEditProject(props) {
 				</div>
 				<div className='basis-1/2'>
 					<div className='form-group'>
-						<p className='mt-2'>Project name</p>
+						<p className='mt-2 mb-2'>Project Name</p>
 						<input
 							type='text'
 							name='projectName'
@@ -77,11 +80,11 @@ export default function FormEditProject(props) {
 					</div>
 				</div>
 			</div>
-			<div className='form-group'>
+			<div className='form-group mt-3'>
 				<p>Project Category</p>
 
 				<Select
-					className='form-control w-full py-2 text-base rounded-md'
+					className='w-full py-2 text-base'
 					value={values.categoryId}
 					onChange={handleChangeCategory}
 					options={arrProjectCategory.map((item) => {
@@ -93,8 +96,8 @@ export default function FormEditProject(props) {
 				/>
 			</div>
 
-			<div className='form-group'>
-				<p>Description</p>
+			<div className='form-group mt-3'>
+				<p className="mb-2">Description</p>
 				<Editor
 					apiKey='idbtfkj3ordlxl9xbkrk5x33ttajitctmzr4ipwa7emcs2kc'
 					initialValue={values.description}

@@ -1,8 +1,8 @@
-import { baseService } from "./baseService";
+import { rootService } from "./rootService";
 
-const service = new baseService();
+const service = new rootService();
 export const cyberbugsService = {
-	//------------------ USER ------------------------
+	//-------For User
 	siginCyberbugs: (userLogin) => {
 		return service.post(`Users/signin`, userLogin);
 	},
@@ -62,56 +62,4 @@ export const cyberbugsService = {
 	getProjectDetail: (projectId) => {
 		return service.get(`Project/getProjectDetail?id=${projectId}`);
 	},
-
-	// //--------------------- TASK -----------------------------------
-	// getAllPriority: (id) => {
-	// 	return service.get(`Priority/getAll?id=${id}`);
-	// },
-
-	// getAllStatus: () => {
-	// 	return service.get(`Status/getAll`);
-	// },
-
-	// getAllTaskType: () => {
-	// 	return service.get(`TaskType/getAll`);
-	// },
-
-	// createTask: (newTask) => {
-	// 	return service.post(`Project/createTask`, newTask);
-	// },
-
-	// getTaskDetail: (taskId) => {
-	// 	return service.get(`Project/getTaskDetail?taskId=${taskId}`);
-	// },
-
-	// updateStatusTask: (statusTaskUpdate) => {
-	// 	return service.put(`Project/updateStatus`, statusTaskUpdate);
-	// },
-
-	// updateTask: (taskUpdate) => {
-	// 	return service.post(`Project/updateTask`, taskUpdate);
-	// },
-
-	// deleteTask: (taskId) => {
-	// 	return service.delete(`Project/removeTask?taskId=${taskId}`);
-	// },
-
-	// //------------------------------- COMMENT -----------------------------
-	// getAllComment: (taskId) => {
-	// 	return service.get(`Comment/getAll?taskId=${taskId}`);
-	// },
-
-	// createComment: (newComment) => {
-	// 	return service.post(`Comment/insertComment`, newComment);
-	// },
-
-	// updateComment: (idComment, contentComment) => {
-	// 	return service.put(
-	// 		`Comment/updateComment?id=${idComment}&contentComment=${contentComment}`
-	// 	);
-	// },
-
-	// deleteComment: (idComment) => {
-	// 	return service.delete(`Comment/deleteComment?idComment=${idComment}`);
-	// },
 };

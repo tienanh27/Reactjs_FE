@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import from TinyMCE
 import { Editor } from "@tinymce/tinymce-react";
-import { Button, Select } from "antd";
+import { Button, Select, Breadcrumb } from "antd";
 import { useFormik } from "formik";
 import {
 	CREATE_PROJECT_SAGA,
@@ -52,7 +52,7 @@ export default function CreateProject(props) {
 			}
 		},
 	});
-	
+
 	// Enable Editor 
 	const { values, handleChange, handleSubmit, setFieldValue } = formik;
 
@@ -66,14 +66,21 @@ export default function CreateProject(props) {
 	};
 
 	return (
-		<div className='container mt-3 mr-4'>
-			<h3 className='mt-3 mb-0 text-2xl font-bold tracking-wider'>
-				Create project
+		<div className='mt-4 w-full'>
+			<h3 className='ml-3 text-2xl font-bold tracking-wider'>
+				Create Project
 			</h3>
+			<Breadcrumb className="ml-3 mt-2">
+				<Breadcrumb.Item>Home</Breadcrumb.Item>
+				<Breadcrumb.Item>CyberLearn.vn</Breadcrumb.Item>
+				<Breadcrumb.Item>Users Management</Breadcrumb.Item>
+			</Breadcrumb>
+
+
 
 			<form className='container' onSubmit={handleSubmit}>
-				<div className='form-group mb-3'>
-					<p className='text-base'>Name</p>
+				<div className='form-group mb-3 mt-3'>
+					<p className='text-base font-bold'>Name</p>
 					<input
 						type='text'
 						name='projectName'
@@ -83,7 +90,7 @@ export default function CreateProject(props) {
 				</div>
 
 				<div className='form-group mb-3'>
-					<p className='text-base'>Description</p>
+					<p className='text-base font-bold'>Description</p>
 
 					{/* Insert code from TinyMCE  */}
 					<Editor
@@ -125,11 +132,11 @@ export default function CreateProject(props) {
 				</div>
 
 				{/* ----------Project Category----------  */}
-				<div className='form-group mb-4'>
-					<p className='text-base'>Project Category</p>
+				<div className='form-group mb-3'>
+					<p className='text-base font-bold'>Project Category</p>
 
 					<Select
-						className='form-control w-full py-2 text-base rounded-md'
+						className='w-full py-2 rounded-md'
 						value={values.categoryId}
 						onChange={handleChangeCategory}
 						options={arrProjectCategory.map((item) => {
@@ -142,7 +149,11 @@ export default function CreateProject(props) {
 				</div>
 
 				{/*---------- insert button by antd ----------  */}
-				<Button htmlType='submit' type='primary'>
+				<Button
+					htmlType="submit"
+					className="bg-blue-500 hover:bg-blue-600 text-white text-base px-4 py-1 rounded"
+					onClick={() => {
+					}}>
 					Create Project
 				</Button>
 			</form>

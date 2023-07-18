@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
 import { SET_SUBMIT_EDIT_USER } from "../../../redux/types/DrawerCyberbugsType";
 import {
 	CREATE_USER_SAGA,
@@ -23,7 +25,7 @@ export default function FormCreateUser(props) {
 		validationSchema: Yup.object().shape({
 			email: Yup.string()
 				.required("Email is required!")
-				.email("email invalid!"),
+				.email("Email invalid!"),
 			name: Yup.string().required("Name is required!"),
 			passWord: Yup.string()
 				.min(4, "Password too short!")
@@ -33,6 +35,8 @@ export default function FormCreateUser(props) {
 				.matches(/^\d+$/, "Phone number invalid!")
 				.required("Phone number is required!"),
 		}),
+
+		// Create user onSubmit 
 		onSubmit: (values) => {
 			dispatch({
 				type: CREATE_USER_SAGA,
@@ -52,10 +56,10 @@ export default function FormCreateUser(props) {
 	return (
 		<form className='container' onSubmit={handleSubmit}>
 			<div className='form-group'>
-				<p>User Name</p>
+				<p className="font-bold text-base mt-3 mb-2">User Name</p>
 				<input
 					name='name'
-					className='form-control w-full p-2 text-base rounded-md border border-slate-200'
+					className='form-control w-full p-2 text-base rounded-md'
 					value={values.name}
 					onChange={handleChange}
 				/>
@@ -66,11 +70,11 @@ export default function FormCreateUser(props) {
 				) : null}
 			</div>
 
-			<div className='form-group'>
-				<p>Email</p>
+			<div className='form-group relative'>
+				<p className="font-bold text-base mt-3 mb-2">Email</p>
 				<input
 					name='email'
-					className='form-control w-full p-2 text-base rounded-md border border-slate-200'
+					className='form-control w-full p-2 text-base rounded-md'
 					value={values.email}
 					onChange={handleChange}
 				/>
@@ -80,18 +84,18 @@ export default function FormCreateUser(props) {
 					</div>
 				) : null}
 			</div>
-			<div className='form-group relative'>
-				<p>Password</p>
+
+			<div className='form-group'>
+				<p className="font-bold text-base mt-3 mb-2">Password</p>
 				<input
 					type={isShowPassWord ? "text" : "password"}
 					name='passWord'
-					className='form-control w-full p-2 text-base rounded-md border border-slate-200'
+					className='form-control w-full p-2 text-base rounded-md'
 					value={values.passWord}
 					onChange={handleChange}
 				/>
 				<div
-					className='absolute'
-					style={{ bottom: "15%", left: "95%", cursor: "pointer" }}
+					className="absolute right-10 cursor-pointer"
 					onClick={() => {
 						dispatch({
 							type: TOGGLE_PASSWORDS,
@@ -99,25 +103,27 @@ export default function FormCreateUser(props) {
 					}}>
 					{values.passWord !== "" ? (
 						isShowPassWord ? (
-							<i className='fa fa-eye-slash'></i>
+							<i className='fas fa-eye-slash'></i>
 						) : (
-							<i className='fa fa-eye'></i>
+							<i className='fas fa-eye'></i>
 						)
 					) : (
 						""
 					)}
 				</div>
 			</div>
+
 			{errors.passWord && touched.passWord ? (
 				<div className='text-red-500' style={{ fontSize: "0.8rem" }}>
 					{errors.passWord}
 				</div>
 			) : null}
+
 			<div className='form-group'>
-				<p>Phone number</p>
+				<p className="font-bold text-base mt-3 mb-2">Phone number</p>
 				<input
 					name='phoneNumber'
-					className='form-control w-full p-2 text-base rounded-md border border-slate-200'
+					className='form-control w-full p-2 text-base rounded-md'
 					value={values.phoneNumber}
 					onChange={handleChange}
 				/>

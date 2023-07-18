@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { DOMAIN, TOKEN } from "../utils/constants/settingSystem";
 
-export class baseService {
+export class rootService {
 	put = (url, model) => {
 		return Axios({
 			url: `${DOMAIN}/${url}`,
