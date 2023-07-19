@@ -35,21 +35,27 @@ export const UserCyberbugsReducer = (state = initialState, action) => {
 			state.userLogin = action.userLogin;
 			return { ...state };
 		}
-		case GET_USERS_SEARCH: {
-			return { ...state, arrUsersSearch: action.arrUsersSearch };
-		}
-		case GET_USERS_BY_PROJECT: {
-			return { ...state, arrUsersProject: action.arrUsersProject };
-		}
+		
 		case GET_USERS: {
 			return { ...state, arrAllUser: action.arrAllUser };
 		}
+		
 		case EDIT_USER: {
 			return { ...state, userEdit: action.userEdit };
 		}
+
+		case GET_USERS_SEARCH: {
+			return { ...state, arrUsersSearch: action.arrUsersSearch };
+		}
+
+		case GET_USERS_BY_PROJECT: {
+			return { ...state, arrUsersProject: action.arrUsersProject };
+		}
+		
 		case TOGGLE_PASSWORDS: {
 			return { ...state, isShowPassWord: !state.isShowPassWord };
 		}
+
 		default:
 			return { ...state };
 	}

@@ -23,8 +23,8 @@ export default function DrawerCyberbugs(props) {
 				open={visible}
 				extra={
 					<Space>
-						<Button onClick={onClose}>Cancel</Button>
-						<Button onClick={callBackSubmit} type='primary'>
+						<Button onClick={onClose} className="">Cancel</Button>
+						<Button onClick={callBackSubmit} className="text-bg-primary">
 							{NameButton}
 						</Button>
 					</Space>

@@ -5,11 +5,12 @@ import UserManagement from "./pages/Cyberbugs/UserManagement/UserManagement";
 import LoadingComponent from "./components/GlobalSetting/LoadingComponent";
 import CyberBugsTemplate from "./templates/CyberbugsTemplate";
 import CreateProject from "./pages/Cyberbugs/CreateProject/CreateProject";
-import ProjectDetail from "./pages/Cyberbugs/ProjectDetail/ProjectDetail";
+import { ProjectDetail } from "./pages/Cyberbugs/ProjectDetail/ProjectDetail";
 import ProjectManagement from "./pages/Cyberbugs/ProjectManagement/ProjectManagement";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ADD_HISTORY } from "./redux/types/HistoryType";
+import '@fortawesome/fontawesome-free/css/all.css';
 
 function App() {
 	const navigate = useNavigate();

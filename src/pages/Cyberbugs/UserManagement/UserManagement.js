@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Table, Button, Popconfirm, Input } from "antd";
+import { Table, Button, Popconfirm, Input, Breadcrumb } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import {
 	DELETE_USER_SAGA,
@@ -10,7 +10,6 @@ import {
 import { OPEN_FORM } from "../../../redux/types/DrawerCyberbugsType";
 import FormEditUser from "../../../components/Forms/FormEditUser/FormEditUser";
 import FormCreateUser from "../../../components/Forms/FormCreateUser/FormCreateUser";
-import HeaderCyberbugs from "../../../components/Cyberbugs/HeaderCyberbugs/HeaderCyberbugs";
 
 const { Search } = Input;
 
@@ -25,29 +24,11 @@ export default function UserManagement(props) {
 		});
 	}, [dispatch]);
 
-	const handleChange = (pagination, filters, sorter) => {};
+	const handleChange = (pagination, filters, sorter) => { };
 
 	const columns = [
-		{
-			title: "ID",
-			dataIndex: "userId",
-			key: "userId",
-		},
-		{
-			title: "Name",
-			dataIndex: "name",
-			key: "name",
-		},
-		{
-			title: "Email",
-			dataIndex: "email",
-			key: "email",
-		},
-		{
-			title: "Phone number",
-			dataIndex: "phoneNumber",
-			key: "phoneNumber",
-		},
+		// column definitions...
+
 		{
 			title: "Action",
 			dataIndex: "",
@@ -56,7 +37,7 @@ export default function UserManagement(props) {
 				return (
 					<div>
 						<Button
-							className='mr-2 '
+							className="mr-2"
 							onClick={() => {
 								dispatch({
 									type: OPEN_FORM,
@@ -68,19 +49,21 @@ export default function UserManagement(props) {
 									type: EDIT_USER,
 									userEdit: record,
 								});
-							}}>
+							}}
+						>
 							<EditOutlined />
 						</Button>
 						<Popconfirm
-							title='Are you sure to delete this user?'
+							title="Delete this user?"
 							onConfirm={() => {
 								dispatch({
 									type: DELETE_USER_SAGA,
 									userId: record.userId,
 								});
 							}}
-							okText='Yes'
-							cancelText='No'>
+							okText="Yes"
+							cancelText="No"
+						>
 							<Button danger>
 								<DeleteOutlined />
 							</Button>
@@ -90,24 +73,30 @@ export default function UserManagement(props) {
 			},
 		},
 	];
-	const handleSubmitSearch = (e) => {
+
+	const handleSubmitSearch = (value) => {
 		dispatch({
 			type: GET_USERS_SAGA,
-			keyWord: e,
+			keyWord: value,
 		});
 	};
 
 	return (
-		<div style={{ width: "100%" }}>
-			<HeaderCyberbugs />
-
-			<div className='container'>
-				<h3 className='mt-3 mb-2 text-2xl font-bold tracking-wider'>
+		<div className=" w-full ">
+			<div className="container">
+				<h3 className="mt-4 mb-2 text-2xl font-bold tracking-wider">
 					Users Management
 				</h3>
+
+				<Breadcrumb>
+					<Breadcrumb.Item>Home</Breadcrumb.Item>
+					<Breadcrumb.Item>CyberLearn.vn</Breadcrumb.Item>
+					<Breadcrumb.Item>Users Management</Breadcrumb.Item>
+				</Breadcrumb>
+
 				<Button
-					type='primary'
-					className='my-3'
+					type="primary"
+					className="my-3 bg-blue-500 hover:bg-blue-600 text-white text-base px-2 py-1 rounded"
 					onClick={() => {
 						const action = {
 							type: OPEN_FORM,
@@ -116,22 +105,26 @@ export default function UserManagement(props) {
 							NameButton: "Create",
 						};
 						dispatch(action);
-					}}>
-					Create user
+					}}
+				>
+					Create User
 				</Button>
 
 				<Search
-					placeholder='Search...'
+					placeholder="Search..."
 					allowClear
-					enterButton='Search'
+					enterButton="Search"
 					onSearch={handleSubmitSearch}
-					style={{ marginBottom: "10px" }}
+					className="search-input"
+					style={{ backgroundColor: "#393E46", color: "#FFFFFF" }}
 				/>
+
 				<Table
 					columns={columns}
 					dataSource={arrAllUser}
 					onChange={handleChange}
-					rowKey={"userId"}
+					rowKey="userId"
+					className="border-solid bg-zinc-900"
 				/>
 			</div>
 		</div>

@@ -7,6 +7,7 @@ import {
 	Avatar,
 	AutoComplete,
 	Popover,
+	Breadcrumb,
 } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,14 +24,11 @@ import {
 	REMOVE_USER_PROJECT_SAGA,
 } from "../../../redux/types/UserCyberbugType";
 import { NavLink } from "react-router-dom";
-import HeaderCyberbugs from "../../../components/Cyberbugs/HeaderCyberbugs/HeaderCyberbugs";
 
 export default function ProjectManagement(props) {
-	const [valueSearch, setValueSearch] = useState("");
+	const [valueSearch, setValueSearch] = useState('');
 	const searchRef = useRef(null);
-	const arrAllProject = useSelector(
-		(state) => state.ProjectReducer.arrAllProject
-	);
+	const arrAllProject = useSelector((state) => state.ProjectReducer.arrAllProject);
 	const { arrUsersSearch } = useSelector((state) => state.UserCyberbugsReducer);
 	const dispatch = useDispatch();
 
@@ -40,20 +38,20 @@ export default function ProjectManagement(props) {
 		});
 	}, [dispatch]);
 
+
 	const columns = [
 		{
-			title: "ID",
-			dataIndex: "id",
-			key: "id",
+			title: 'ID',
+			dataIndex: 'id',
+			key: 'id',
 			sorter: (item2, item1) => item2.id - item1.id,
-
-			sortDirections: ["descend"],
-			width: "13%",
+			sortDirections: ['descend'],
+			width: '13%',
 		},
 		{
-			title: "Project Name",
-			dataIndex: "projectName",
-			key: "projectName",
+			title: 'Project Name',
+			dataIndex: 'projectName',
+			key: 'projectName',
 			render: (text, record, index) => {
 				return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>;
 			},
@@ -66,19 +64,18 @@ export default function ProjectManagement(props) {
 				return 1;
 			},
 		},
-
 		{
-			title: "Category",
-			dataIndex: "categoryName",
-			key: "categoryName",
+			title: 'Category',
+			dataIndex: 'categoryName',
+			key: 'categoryName',
 			render: (text, record, index) => {
-				let changeText = "";
+				let changeText = '';
 				if (record.categoryId === 1) {
-					changeText = "Web Project";
+					changeText = 'Web Project';
 				} else if (record.categoryId === 2) {
-					changeText = "Software Project";
+					changeText = 'Software Project';
 				} else {
-					changeText = "Mobile Project";
+					changeText = 'Mobile Project';
 				}
 				return <p>{changeText}</p>;
 			},
@@ -90,15 +87,14 @@ export default function ProjectManagement(props) {
 				}
 				return 1;
 			},
-			width: "15%",
+			width: '15%',
 		},
-
 		{
-			title: "Creator",
-			dataIndex: "",
-			key: "creator",
+			title: 'Creator',
+			dataIndex: '',
+			key: 'creator',
 			render: (text, record, index) => {
-				return <Tag color='green'>{record.creator.name}</Tag>;
+				return <Tag color="green">{record.creator.name}</Tag>;
 			},
 			sorter: (item2, item1) => {
 				let creator1 = item1.creator.name.trim().toLowerCase();
@@ -108,28 +104,30 @@ export default function ProjectManagement(props) {
 				}
 				return 1;
 			},
-			width: "10%",
+			width: '10%',
 		},
-
 		{
-			title: "Members",
-			dataIndex: "members",
-			key: "members",
+			title: 'Members',
+			dataIndex: 'members',
+			key: 'members',
 			render: (text, record, index) => {
+
 				return (
-					<div className='flex'>
+					<div className="flex">
 						<Avatar.Group
 							maxCount={2}
-							maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+							maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}
+							className="mr-2"
+						>
 							{record.members?.map((item, index) => {
 								return (
 									<Popover
 										key={index}
-										placement='top'
-										title='Members'
+										placement="top"
+										title="Members"
 										content={() => {
 											return (
-												<table className='table'>
+												<table className="table">
 													<thead>
 														<tr>
 															<th>ID</th>
@@ -142,25 +140,21 @@ export default function ProjectManagement(props) {
 														{record.members?.map((item, index) => {
 															return (
 																<tr key={index}>
-																	<td style={{ verticalAlign: "middle" }}>
-																		{item.userId}
-																	</td>
-																	<td style={{ verticalAlign: "middle" }}>
-																		{item.name}
-																	</td>
+																	<td style={{ verticalAlign: 'middle' }}>{item.userId}</td>
+																	<td style={{ verticalAlign: 'middle' }}>{item.name}</td>
 																	<td>
 																		<img
 																			src={item.avatar}
 																			alt={item.name}
-																			width='30'
-																			height='30'
-																			style={{ borderRadius: "50%" }}
+																			width="30"
+																			height="30"
+																			style={{ borderRadius: '50%' }}
 																		/>
 																	</td>
 																	<td>
 																		<Button
-																			type='danger'
-																			shape='circle'
+																			type="danger"
+																			shape="circle"
 																			onClick={() => {
 																				dispatch({
 																					type: REMOVE_USER_PROJECT_SAGA,
@@ -169,7 +163,8 @@ export default function ProjectManagement(props) {
 																						userId: item.userId,
 																					},
 																				});
-																			}}>
+																			}}
+																		>
 																			X
 																		</Button>
 																	</td>
@@ -179,15 +174,16 @@ export default function ProjectManagement(props) {
 													</tbody>
 												</table>
 											);
-										}}>
+										}}
+									>
 										<Avatar src={item.avatar} />
 									</Popover>
 								);
 							})}
 						</Avatar.Group>
 						<Popover
-							placement='bottom'
-							title={"Add User"}
+							placement="bottom"
+							title="Add User"
 							content={() => {
 								return (
 									<AutoComplete
@@ -198,7 +194,8 @@ export default function ProjectManagement(props) {
 											};
 										})}
 										value={valueSearch}
-										style={{ width: "100%" }}
+										style={{ width: '100%' }}
+
 										onSelect={(value, option) => {
 											setValueSearch(option.label);
 											dispatch({
@@ -209,6 +206,7 @@ export default function ProjectManagement(props) {
 												},
 											});
 										}}
+
 										onSearch={(value) => {
 											setValueSearch(value);
 											if (searchRef.current) {
@@ -221,54 +219,59 @@ export default function ProjectManagement(props) {
 												});
 											}, 300);
 										}}
-										onChange={(value) => {}}
-										placeholder='input here'
+
+										onChange={(value) => { }}
+										placeholder="input here"
 									/>
 								);
 							}}
-							trigger='click'>
-							<Button shape='circle'>+</Button>
+							trigger="click"
+						>
+							<Button shape="circle">+</Button>
 						</Popover>
 					</div>
 				);
 			},
-			width: "15%",
+			width: '15%',
 		},
-
 		{
-			title: "Action",
-			dataIndex: "",
-			key: "action",
+			title: 'Action',
+			dataIndex: '',
+			key: 'action',
 			render: (text, record) => {
+
 				return (
 					<div>
 						<Button
-							className='mr-2'
+							className="mr-2"
 							onClick={() => {
 								dispatch({
 									type: OPEN_FORM,
 									Component: <FormEditProject />,
-									Title: "Edit Project",
-									NameButton: "Save",
+									Title: 'Edit Project',
+									NameButton: 'Save',
 								});
 
 								dispatch({
 									type: EDIT_PROJECT,
 									editProject: record,
 								});
-							}}>
+							}}
+						>
 							<EditOutlined />
 						</Button>
 						<Popconfirm
-							title='Are you sure to delete this project?'
+							title="Delete this project?"
 							onConfirm={() => {
 								dispatch({
 									type: DELETE_PROJECT_SAGA,
 									projectId: record.id,
 								});
 							}}
-							okText='Yes'
-							cancelText='No'>
+							okText={<span className="text-red-500 font-bold">Yes</span>}
+						
+							cancelText={<span className="font-bold">No</span>}
+						>
 							<Button danger>
 								<DeleteOutlined />
 							</Button>
@@ -276,19 +279,20 @@ export default function ProjectManagement(props) {
 					</div>
 				);
 			},
-			width: "15%",
+			width: '15%',
 		},
 	];
 
 	return (
-		<div style={{ width: "100%" }}>
-			<HeaderCyberbugs />
-			<div className='mt-3 container'>
-				<h3 className='mt-3 mb-2 text-2xl font-bold tracking-wider'>
-					Project Management
-				</h3>
-
-				<Table columns={columns} dataSource={arrAllProject} rowKey={"id"} />
+		<div className="mt-2 w-full">
+			<div className="mt-3 container">
+				<h3 className="mt-3 mb-2 text-2xl font-bold tracking-wider">Project Management</h3>
+				<Breadcrumb className="mb-4">
+					<Breadcrumb.Item>Home</Breadcrumb.Item>
+					<Breadcrumb.Item>CyberLearn.vn</Breadcrumb.Item>
+					<Breadcrumb.Item>Project Management</Breadcrumb.Item>
+				</Breadcrumb>
+				<Table columns={columns} dataSource={arrAllProject} rowKey="id" />
 			</div>
 		</div>
 	);
