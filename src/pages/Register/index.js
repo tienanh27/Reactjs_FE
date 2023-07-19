@@ -70,6 +70,9 @@ function Register() {
           </Form>
           )}
         </Formik>
+        <SLink>
+          Register Success <Link to="/login"> Login here</Link>
+        </SLink>
       </SForm>
       <SImg>
         <img src={ImageBG} alt="" />
@@ -99,6 +102,8 @@ const SForm = styled.div`
   justify-content: center;
   flex-direction: column;
   padding-left: 15%;
+  margin-right: 20px;
+
 `;
 
 const SImg = styled.div`
