@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import { Link } from "react-router-dom";
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { MdPassword } from "react-icons/md";
 import styled from "styled-components";
@@ -104,6 +105,9 @@ const SForm = styled.div`
   padding-left: 15%;
   margin-right: 20px;
 
+`;
+const SLink = styled.div`
+  margin-top: 15px;
 `;
 
 const SImg = styled.div`

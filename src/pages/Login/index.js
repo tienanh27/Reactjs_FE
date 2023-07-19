@@ -75,6 +75,7 @@ const SForm = styled.div`
   justify-content: center;
   flex-direction: column;
   padding-left: 15%;
+  margin-right: 20px;
 `;
 const SLink = styled.div`
   margin-top: 15px;
