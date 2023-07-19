@@ -6,5 +6,3 @@ Task
 2. Tiến Anh
 - Giao diện index: user, proẹct, homepage
 
-3. Hùng Trần
-- Giao diện Create Task
