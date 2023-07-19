@@ -10,3 +10,20 @@
 	display: flex;
 	position: relative;
 }
+
+/* Add a specific width to the table cells */
+
+.ant-table-cell {
+	width: 100px;
+	/* Adjust the width as per your requirements */
+	max-width: 100px;
+	/* Ensures the cell doesn't expand beyond the fixed width */
+}
+
+/* Truncate the content and add ellipsis */
+.truncate {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+} */

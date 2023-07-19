@@ -11,6 +11,7 @@ import {
 
 //import Notification function
 import { notificationFunction } from "../../../utils/Notification/Notification";
+import { TOKEN } from "../../../utils/constants/settingSystem";
 
 
 //-------<<>>--------//
@@ -153,6 +154,7 @@ export default function CreateProject(props) {
 					htmlType="submit"
 					className="bg-blue-500 hover:bg-blue-600 text-white text-base px-4 py-1 rounded"
 					onClick={() => {
+						console.log('localStorage.getItem(TOKEN)', localStorage.getItem(TOKEN));
 					}}>
 					Create Project
 				</Button>

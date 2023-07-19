@@ -60,7 +60,7 @@ export default function FormEditUser(props) {
 			<div className='flex gap-4'>
 				<div className='basis-2/3'>
 					<div className='form-group'>
-						<p>User ID</p>
+						<p className="font-bold mt-2 mb-2" >User ID</p>
 						<input
 							name='userId'
 							className='form-control w-full p-2 text-base rounded-md border border-slate-200 bg-slate-100'
@@ -69,7 +69,7 @@ export default function FormEditUser(props) {
 						/>
 					</div>
 					<div className='form-group'>
-						<p>User Name</p>
+						<p className="font-bold mt-2 mb-2" >User Name</p>
 						<input
 							name='name'
 							className='form-control w-full p-2 text-base rounded-md border border-slate-200'
@@ -97,7 +97,7 @@ export default function FormEditUser(props) {
 			</div>
 
 			<div className='form-group'>
-				<p>Email</p>
+				<p className="font-bold mt-2 mb-2" >Email</p>
 				<input
 					name='email'
 					className='form-control w-full p-2 text-base rounded-md border border-slate-200 bg-slate-100'
@@ -106,7 +106,7 @@ export default function FormEditUser(props) {
 				/>
 			</div>
 			<div className='form-group relative'>
-				<p>Password</p>
+				<p className="font-bold mt-2 mb-2" >Password</p>
 				<input
 					type={isShowPassWord ? "text" : "password"}
 					name='passWord'
@@ -139,7 +139,7 @@ export default function FormEditUser(props) {
 				</div>
 			) : null}
 			<div className='form-group'>
-				<p>Phone number</p>
+				<p className="font-bold mt-2 mb-2" >Phone number</p>
 				<input
 					name='phoneNumber'
 					className='form-control w-full p-2 text-base rounded-md border border-slate-200'
