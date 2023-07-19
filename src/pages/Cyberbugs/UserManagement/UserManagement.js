@@ -17,7 +17,6 @@ export default function UserManagement(props) {
 	const { arrAllUser } = useSelector((state) => state.UserCyberbugsReducer);
 	const dispatch = useDispatch();
 
-	console.log('arrAllUser', arrAllUser);
 	useEffect(() => {
 		dispatch({
 			type: GET_USERS_SAGA,
@@ -31,13 +30,34 @@ export default function UserManagement(props) {
 		// column definitions...
 
 		{
+			title: 'User ID',
+			dataIndex: 'userId',
+			render: (text) => <a className="truncate">{text}</a>,
+		},
+		{
+			title: 'Name',
+			dataIndex: 'name',
+			render: (text) => <a className="truncate">{text}</a>,
+		},
+		{
+			title: 'Email',
+			dataIndex: 'email',
+			render: (text) => <a className="truncate" >{text}</a>,
+		},
+		{
+			title: 'Phone Number',
+			dataIndex: 'phoneNumber',
+			render: (text) => <a className="truncate">{text}</a>,
+		},
+
+
+		{
 			title: "Action",
 			dataIndex: "",
 			key: "action",
 			render: (text, record) => {
 				return (
-					<div className=" inline-flex items-center gap-2">
-						<div>{text?.name}</div>
+					<div>
 						<Button
 							className="mr-2"
 							onClick={() => {
@@ -63,7 +83,7 @@ export default function UserManagement(props) {
 									userId: record.userId,
 								});
 							}}
-							okText="Yes"
+							okText={<span className="text-red-500 font-bold">Yes</span>}
 							cancelText="No"
 						>
 							<Button danger>
@@ -126,7 +146,7 @@ export default function UserManagement(props) {
 					dataSource={arrAllUser}
 					onChange={handleChange}
 					rowKey="userId"
-					className="border-solid bg-zinc-900"
+					className="border-solid "
 				/>
 			</div>
 		</div>
