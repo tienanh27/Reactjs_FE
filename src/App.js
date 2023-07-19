@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ADD_HISTORY } from "./redux/types/HistoryType";
 import '@fortawesome/fontawesome-free/css/all.css';
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
 	const navigate = useNavigate();
@@ -39,7 +41,13 @@ function App() {
 					<Route path='usermanagement' element={<UserManagement />} />
 
 					<Route path='projectdetail/:projectId' element={<ProjectDetail />} />
+
 				</Route>
+				
+				<Route path="/register" element={<Register />} />
+      				
+				<Route path="/login" element={<Login />} />
+  
 			</Routes>
 		</>
 	);

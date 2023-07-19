@@ -43,7 +43,7 @@ export default function SidebarCyberbugs() {
   const handleSignOut = () => {
     localStorage.removeItem(USER_LOGIN);
     localStorage.removeItem(TOKEN);
-    navigate("/");
+    navigate("/login");
     window.location.reload();
   };
 
@@ -54,7 +54,7 @@ export default function SidebarCyberbugs() {
 
   const menu = (
     <Menu theme="light" onClick={handleMenuClick} selectedKeys={selectedKeys}>
-      <Menu.Item key="1" icon={<LogoutOutlined />}>
+      <Menu.Item key="1" icon={<LogoutOutlined />} onClick={handleSignOut}>
         Sign Out
       </Menu.Item>
     </Menu>

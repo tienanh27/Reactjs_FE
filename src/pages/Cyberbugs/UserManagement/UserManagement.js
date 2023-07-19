@@ -17,6 +17,7 @@ export default function UserManagement(props) {
 	const { arrAllUser } = useSelector((state) => state.UserCyberbugsReducer);
 	const dispatch = useDispatch();
 
+	console.log('arrAllUser', arrAllUser);
 	useEffect(() => {
 		dispatch({
 			type: GET_USERS_SAGA,
@@ -35,7 +36,8 @@ export default function UserManagement(props) {
 			key: "action",
 			render: (text, record) => {
 				return (
-					<div>
+					<div className=" inline-flex items-center gap-2">
+						<div>{text?.name}</div>
 						<Button
 							className="mr-2"
 							onClick={() => {
