@@ -3,12 +3,10 @@ import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { MdPassword } from "react-icons/md";
-import styled from "styled-components";
 import useAuth from "../../hooks/useAuth";
-// import { CustomInput, Button } from "../../components";
-import ImageBG from "../../assets/img/right_side.svg";
-import * as Yup from 'yup'; // ok
 import { Button, CustomInput } from "../../components";
+import ImageBG from "../../assets/img/right_side.svg";
+import * as Yup from 'yup';
 
 function Register() {
   const { loginUser, registerUser } = useAuth();
@@ -20,10 +18,13 @@ function Register() {
     email: Yup.string().email('Invalid email').required('Email is Required'),
     phoneNumber: Yup.string().matches(/^[0-9]{10}$/, 'Invalid phone number').required('Phone number is required'),
   });
+
   return (
-    <SContainer>
-      <SForm>
-        <Formik 
+    <section className="w-full flex flex-wrap bg-gray-100">
+
+      {/* Register section */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center h-screen">
+        <Formik
           initialValues={{
             email: "",
             passWord: "",
@@ -35,87 +36,57 @@ function Register() {
             registerUser(values);
           }}
         >
-          {({ errors, touched, }) => (
-          <Form>
-            <h1>Register </h1>
-            <p>Unlock all Features!</p>
-            <CustomInput icon={<AiOutlineUser size={20} />}
-              name="name"
-              placeholder="Enter Your Name"
-            />
-            {errors.name && touched.name && (
-              <div style={{ color: 'red' }}>{errors.name}</div>
-            )}
-            <CustomInput icon={<AiOutlineMail size={20} />}
-              name="email"
-              placeholder="Enter Your Email"
-            />
-            {errors.email && touched.email && (
-              <div style={{ color: 'red' }}>{errors.email}</div>
-            )}
-            <CustomInput
-              icon={<AiOutlinePhone size={20} />}
-              name="phoneNumber"
-              placeholder="Enter Your PhoneNumber"
-            />
-            {errors.phoneNumber && touched.phoneNumber && (
-              <div style={{ color: 'red' }}>{errors.phoneNumber}</div>
-            )}
-            <CustomInput
-              icon={<MdPassword size={20} />}
-              type="password"
-              name="passWord"
-              placeholder="Enter Your PassWord"
-            />
-            <Button text="REGISTER" />
-          </Form>
+          {({ errors, touched }) => (
+            <Form className="max-w-lg">
+              <h1 className="text-5xl font-bold mb-10">Register</h1>
+              <p className="text-gray-500 font-bold">Unlock all Features!</p>
+              <CustomInput
+                icon={<AiOutlineUser size={20} />}
+                name="name"
+                placeholder="Enter Your Name"
+              />
+              {errors.name && touched.name && (
+                <div style={{ color: 'red' }}>{errors.name}</div>
+              )}
+              <CustomInput
+                icon={<AiOutlineMail size={20} />}
+                name="email"
+                placeholder="Enter Your Email"
+              />
+              {errors.email && touched.email && (
+                <div style={{ color: 'red' }}>{errors.email}</div>
+              )}
+              <CustomInput
+                icon={<AiOutlinePhone size={20} />}
+                name="phoneNumber"
+                placeholder="Enter Your PhoneNumber"
+              />
+              {errors.phoneNumber && touched.phoneNumber && (
+                <div style={{ color: 'red' }}>{errors.phoneNumber}</div>
+              )}
+              <CustomInput
+                icon={<MdPassword size={20} />}
+                type="password"
+                name="passWord"
+                placeholder="Enter Your PassWord"
+              />
+              <div>
+                <button className="bg-indigo-500 text-white rounded font-semibold text-lg hover:bg-gray-700 p-2 mt-8 w-100 h-12">Register</button>
+              </div>
+            </Form>
           )}
         </Formik>
-        <SLink>
-          Register Success <Link to="/login"> Login here</Link>
-        </SLink>
-      </SForm>
-      <SImg>
-        <img src={ImageBG} alt="" />
-      </SImg>
-    </SContainer>
+        <div className="mt-3">
+          Register Successfully ? <Link to="/login" className="text-indigo-500 font-semibold hover:underline"> Login here</Link>
+        </div>
+      </div>
+
+      {/* Image section */}
+      <div className="w-1/2">
+        <img className="object-cover w-full h-screen hidden md:block" src={ImageBG} alt="" />
+      </div>
+    </section>
   );
 }
-
-const SContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-
-  @media (max-width: 767px) {
-    padding: 0 10px;
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
-    padding: 0 15px;
-  }
-`;
-const SForm = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-left: 15%;
-  margin-right: 20px;
-
-`;
-const SLink = styled.div`
-  margin-top: 15px;
-`;
-
-const SImg = styled.div`
-  height: 900px;
-  img {
-    height: 100%;
-    width: 100%;
-  }
-`;
 
 export default Register;
